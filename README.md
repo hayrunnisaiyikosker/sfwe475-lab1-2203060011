@@ -1,1 +1,3 @@
-# sfwe475-lab1-2203060011
+  npm install
+  npm run start
+  

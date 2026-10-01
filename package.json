@@ -1,0 +1,27 @@
+{
+  "name": "sfwe475-lab1-2203060011",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  
+  "scripts": {
+  "typecheck": "tsc --noEmit",
+  "start": "tsx src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hayrunnisaiyikosker/sfwe475-lab1-2203060011.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/hayrunnisaiyikosker/sfwe475-lab1-2203060011/issues"
+  },
+  "homepage": "https://github.com/hayrunnisaiyikosker/sfwe475-lab1-2203060011#readme",
+  "devDependencies": {
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

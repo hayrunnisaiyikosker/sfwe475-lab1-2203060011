@@ -16,3 +16,8 @@ for (const id of [1, 99]) {
 tasks = toggleTask(tasks, 1);
 console.log(filterTasks(tasks, "done"));
 console.log(filterTasks(tasks, "open"));
+
+const first = tasks[0];
+if (first !== undefined) {
+  console.log(first.title);
+}

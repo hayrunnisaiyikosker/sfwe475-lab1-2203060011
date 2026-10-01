@@ -5,8 +5,16 @@ export function addTask(tasks: Task[], title: string): Task[] {
   return [...tasks, { id, title, done: false }];
 }
 
-export function findTask(tasks: Task[], id: number): Task |undefined {
-  return tasks.find((t) => t.id === id);
+export type FindResult =
+  | { ok: true; task: Task }
+  | { ok: false; error: string };
+
+export function findTask(tasks: Task[], id: number): FindResult {
+  const task = tasks.find((t) => t.id === id);
+  if (task === undefined) {
+    return { ok: false, error: `Task ${id} not found` };
+  }
+  return { ok: true, task };
 }
 
 export function daysUntilDue(task: Task): number |undefined {

@@ -5,8 +5,12 @@ tasks = addTask(tasks, "Read Chapter 1");
 tasks = addTask(tasks, "Write notes");
 
 for (const id of [1, 99]) {
-  const task = findTask(tasks, id);
-  console.log(task ? task.title : `Task ${id} not found`);
+  const result = findTask(tasks, id);
+  if (result.ok) {
+    console.log(result.task.title);
+  } else {
+    console.log(result.error);
+  }
 }
 
 tasks = toggleTask(tasks, 1);

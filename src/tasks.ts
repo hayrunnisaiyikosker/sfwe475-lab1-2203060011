@@ -14,3 +14,14 @@ export function daysUntilDue(task: Task): number |undefined {
   const due = new Date(task.dueDate);
   return Math.ceil((due.getTime() - Date.now()) / 86_400_000);
 }
+
+export function toggleTask(tasks: Task[], id: number): Task[] {
+  return tasks.map((t) => (t.id === id ? { ...t, done: !t.done } : t));
+}
+
+export type Filter = "all" | "done" | "open";
+
+export function filterTasks(tasks: Task[], filter: Filter): Task[] {
+  if (filter === "all") return tasks;
+  return tasks.filter((t) => (filter === "done" ? t.done : !t.done));
+}

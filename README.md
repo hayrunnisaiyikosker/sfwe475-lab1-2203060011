@@ -1,3 +1,4 @@
-Step 1: npm install
+  Run: npm install
+
   npm run start
   

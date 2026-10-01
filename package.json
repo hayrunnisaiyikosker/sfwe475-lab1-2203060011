@@ -6,7 +6,8 @@
   
   "scripts": {
   "typecheck": "tsc --noEmit",
-  "start": "tsx src/index.ts"
+  "start": "tsx src/index.ts",
+  "clean": "rm -rf dist"
   },
   "repository": {
     "type": "git",

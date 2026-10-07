@@ -1,5 +1,5 @@
 import { addTask, findTask, toggleTask, filterTasks, type Task } from "./tasks";
-import { fetchTodo } from "./api";
+import { fetchTodo, fetchTodos, fetchTodosSequential } from "./api";
 
 let tasks: Task[] = [];
 tasks = addTask(tasks, "Read Chapter 1");
@@ -26,6 +26,16 @@ if (first !== undefined) {
 async function main() {
   const todo = await fetchTodo(1);
   console.log(todo);
+
+    const ids = [1, 2, 3, 4, 5];
+
+  console.time("sequential");
+  await fetchTodosSequential(ids);
+  console.timeEnd("sequential");
+
+  console.time("parallel");
+  await fetchTodos(ids);
+  console.timeEnd("parallel");
 }
  
 main();

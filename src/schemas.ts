@@ -22,3 +22,8 @@ export const TodoSchema = z.object({
   title: z.string().min(1),
   completed: z.boolean(),
 });
+
+export const TaskListSchema = z.array(TaskSchema);
+export type TaskList = z.infer<typeof TaskListSchema>;
+
+export const CreateTaskBatchSchema = z.array(z.unknown());

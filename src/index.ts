@@ -2,7 +2,7 @@ import { addTask, findTask, toggleTask, filterTasks } from "./tasks";
 import type { Task } from "./schemas";
 import { fetchTodo, fetchTodos, fetchTodosSequential } from "./api";
 import { TaskSchema, CreateTaskSchema } from "./schemas";
-import { createTask } from "./createTask";
+import { createTask, createTasks } from "./createTask";
 
 let tasks: Task[] = [];
 tasks = addTask(tasks, "Read Chapter 1");
@@ -82,3 +82,19 @@ for (const payload of payloads) {
     console.log("Failed:", result.error.fieldErrors);
   }
 }
+
+const batch = createTasks([
+  { title: "Buy milk" },
+  {},
+  { title: "Call mom" },
+  { title: 123 },
+]);
+
+if (batch.ok) {
+  console.log("Batch created:", batch.created);
+  console.log("Batch failed:", batch.failed);
+} else {
+  console.log("Not an array:", batch.error);
+}
+
+console.log("Non-array input ok?", createTasks("not an array").ok);

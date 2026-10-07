@@ -40,3 +40,7 @@
   ```
   This says the problem is in the `done` field: it was expected to be a boolean, but a string was received.
   Zod detects the error and tells us exactly where it comes from (`path`) and what it expected compared to what it received. Unlike in the previous section, where `todo.done` silently returned `undefined`, this error is no longer silent: we can see it and react to it.
+
+## Why unknown?
+  The payload comes from outside, and we don't know its shape. `unknown` says exactly that: "I don't know what this is." TypeScript doesn't let us use an `unknown` value before checking it, so it pushes us to validate first.
+  If we typed the payload as `Task`, it would mean "this data is correct, trust me," but no one has actually checked it. This is the same mistake as in Strand 2, where we typed `fetchTodo` as `Task` while the real data had a different shape, and TypeScript stayed silent. If wrong data comes in, TypeScript won't warn us, and the bug will only show up at runtime.

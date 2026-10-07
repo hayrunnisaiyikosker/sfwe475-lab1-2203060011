@@ -1,4 +1,4 @@
-export async function fetchTodo(id: number) {
+export async function fetchTodo(id: number): Promise<unknown> {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 3000);
 

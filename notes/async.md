@@ -1,0 +1,2 @@
+## while await fetch(...) is waiting for a response, what is the rest of your program allowed to do?
+  While 'await fetch(...)' is waiting for response, it only function it is in, not whole program. The rest of the programcan keep running and do other work in the meantime. When the response arrives, the paused function continues from where it stopped.

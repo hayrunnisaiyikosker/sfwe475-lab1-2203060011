@@ -1,4 +1,5 @@
 import { addTask, findTask, toggleTask, filterTasks, type Task } from "./tasks";
+import { fetchTodo } from "./api";
 
 let tasks: Task[] = [];
 tasks = addTask(tasks, "Read Chapter 1");
@@ -21,3 +22,10 @@ const first = tasks[0];
 if (first !== undefined) {
   console.log(first.title);
 }
+
+async function main() {
+  const todo = await fetchTodo(1);
+  console.log(todo);
+}
+ 
+main();

@@ -1,4 +1,7 @@
-export async function fetchTodo(id: number): Promise<unknown> {
+import { TodoSchema } from "./schemas";
+import type { Task } from "./schemas";
+
+export async function fetchTodo(id: number): Promise<Task | null> {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 3000);
 
@@ -13,8 +16,19 @@ export async function fetchTodo(id: number): Promise<unknown> {
       return null;
     }
 
-    const data = await response.json();
-    return data;
+    const data: unknown = await response.json();
+    const parsed = TodoSchema.safeParse(data);
+
+    if (!parsed.success) {
+      console.error("Invalid todo shape:", parsed.error.flatten().fieldErrors);
+      return null;
+    }
+
+    return {
+      id: parsed.data.id,
+      title: parsed.data.title,
+      done: parsed.data.completed,
+    };
   } catch (error) {
     if (error instanceof Error && error.name === "AbortError") {
       console.error("Request timed out after 3 seconds");

@@ -15,3 +15,10 @@ export const CreateTaskSchema = TaskSchema.omit({
 });
 
 export type CreateTaskInput = z.infer<typeof CreateTaskSchema>;
+
+export const TodoSchema = z.object({
+  userId: z.number(),
+  id: z.number().int().positive(),
+  title: z.string().min(1),
+  completed: z.boolean(),
+});

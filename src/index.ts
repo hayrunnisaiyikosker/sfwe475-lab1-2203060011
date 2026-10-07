@@ -2,6 +2,7 @@ import { addTask, findTask, toggleTask, filterTasks } from "./tasks";
 import type { Task } from "./schemas";
 import { fetchTodo, fetchTodos, fetchTodosSequential } from "./api";
 import { TaskSchema, CreateTaskSchema } from "./schemas";
+import { createTask } from "./createTask";
 
 let tasks: Task[] = [];
 tasks = addTask(tasks, "Read Chapter 1");
@@ -65,4 +66,19 @@ const createExtra = { title: "Call mom", id: 99, done: true };
 for (const candidate of [createOk, createEmpty, createExtra]) {
   const result = CreateTaskSchema.safeParse(candidate);
   console.log(result.success, result.success ? result.data : result.error.issues);
+}
+const payloads: unknown[] = [
+  { title: "Buy milk" },        
+  {},                            
+  { title: 123},       
+];
+
+for (const payload of payloads) {
+  const result = createTask(payload);
+
+  if (result.ok) {
+    console.log("Created:", result.task);
+  } else {
+    console.log("Failed:", result.error.fieldErrors);
+  }
 }

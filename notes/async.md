@@ -44,3 +44,7 @@
 ## Why unknown?
   The payload comes from outside, and we don't know its shape. `unknown` says exactly that: "I don't know what this is." TypeScript doesn't let us use an `unknown` value before checking it, so it pushes us to validate first.
   If we typed the payload as `Task`, it would mean "this data is correct, trust me," but no one has actually checked it. This is the same mistake as in Strand 2, where we typed `fetchTodo` as `Task` while the real data had a different shape, and TypeScript stayed silent. If wrong data comes in, TypeScript won't warn us, and the bug will only show up at runtime.
+
+## parse() vs safeParse()
+  If the data is invalid, `parse()` throws an error and the program fails. `safeParse()` does not throw an error. Instead, it returns an object that contains either the data or the error.
+  `createTask` receives data from outside, and this data can't be trusted. Invalid input is not an exception here, it is a common situation. That's why we want to return a specific message like "it failed, and the reason is ..." instead of crashing.
